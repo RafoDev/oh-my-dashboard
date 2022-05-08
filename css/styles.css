@@ -1,0 +1,380 @@
+.main__todo-chart {
+  grid-area: c2;
+  background-color: var(--primary-color);
+  padding: 1em;
+  display: flex;
+  flex-flow: row wrap;
+  border-radius: 0.5rem;
+}
+.main__todo-chart-header {
+  flex-grow: 1;
+}
+.main__todo-chart-title {
+  margin: 0;
+  font-weight: 200;
+  font-size: 0.8rem;
+}
+.main__todo-chart-resume {
+  margin: 0;
+  font-weight: 300;
+  font-size: 1.5rem;
+  color: var(--text-color-highlight);
+}
+.main__todo-chart-container {
+  margin-top: 1rem;
+  width: 100%;
+}
+
+.header {
+  padding: 0 1.5rem;
+  grid-area: header;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+.header__title {
+  font-size: 1rem;
+  font-weight: 100;
+  margin: 0;
+}
+.header__hamburger-menu {
+  display: flex;
+  width: 1.5rem;
+  height: 1.5rem;
+  flex-direction: column;
+  justify-content: space-around;
+  cursor: pointer;
+}
+.header__hamburger-menu-l1, .header__hamburger-menu-l2, .header__hamburger-menu-l3 {
+  width: 100%;
+  height: 1.5px;
+  background-color: var(--text-color);
+  transform-origin: left top;
+  transition: transform 0.25s cubic-bezier(0, 0.37, 0, 1.61);
+}
+.header__hamburger-menu-l2 {
+  width: 80%;
+}
+.header__hamburger-menu-l1--transform {
+  transform: rotate(45deg);
+}
+.header__hamburger-menu-l3--transform {
+  transform: rotate(-45deg) translateX(-1px);
+}
+.header__hamburger-menu-l2--transform {
+  transform: scale(0);
+}
+
+@media (min-width: 992px) {
+  .header__hamburger-menu {
+    display: none;
+  }
+}
+.main {
+  grid-area: main;
+}
+.main-container {
+  overflow: hidden;
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  grid-template-rows: 400px repeat(2, 1fr);
+  grid-template-areas: "c1 c1 c1 c1 c1 c1" "todo todo todo todo todo todo" "c2 c2 c2 c2 c2 c2";
+  gap: 1rem;
+}
+.main__chart {
+  overflow: hidden;
+  background-color: var(--primary-color);
+  padding: 1em;
+  display: flex;
+  flex-flow: row wrap;
+  border-radius: 0.5rem;
+  grid-area: c1;
+}
+.main__chart-header {
+  flex-grow: 1;
+}
+.main__chart-title {
+  margin: 0;
+  font-weight: 200;
+  font-size: 0.8rem;
+}
+.main__chart-resume {
+  margin: 0;
+  font-weight: 300;
+  font-size: 1.5rem;
+  color: var(--text-color-highlight);
+}
+.main__chart-options {
+  margin: 0;
+}
+.main__chart-option-list {
+  padding-left: 0;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  list-style: none;
+  border: 1px solid var(--secondary-color);
+  border-radius: 0.5em;
+  overflow: hidden;
+}
+.main__chart-option-item {
+  cursor: pointer;
+  border: 0.1em solid var(--secondary-color);
+  color: var(--text-color-highlight);
+  margin: 0;
+  font-weight: 400;
+  font-size: 0.9rem;
+  padding: 0.2em 0.5em;
+}
+.main__chart-option-item-selected {
+  background: var(--bg-gradient);
+}
+.main__chart-container {
+  margin-top: 1rem;
+  width: 100%;
+}
+.main__todo {
+  box-sizing: border-box;
+  border-radius: 0.5rem;
+  background-color: var(--primary-color);
+  grid-area: todo;
+  display: grid;
+  justify-content: center;
+  align-items: center;
+  grid-template-columns: 65% 35%;
+  grid-template-rows: repeat(3, min-content);
+  grid-template-areas: "title title" "input button" "tasks tasks";
+  gap: 0.5rem;
+  padding: 1em;
+}
+.main__todo-title {
+  grid-area: title;
+  margin: 0;
+  font-weight: 300;
+  font-size: 1.5rem;
+  color: var(--text-color-highlight);
+}
+.main__todo-input {
+  grid-area: input;
+  background-color: transparent;
+  border: none;
+  color: var(--text-color-highlight);
+  padding: 0.5em 0.5em;
+  transition: all 0.25s ease-in-out;
+}
+.main__todo-input:focus {
+  outline: 1px solid var(--text-color);
+}
+.main__todo-button {
+  grid-area: button;
+  background: var(--bg-gradient);
+  text-decoration: none;
+  color: var(--text-color);
+  padding: 0.2em 0.5em;
+  border-radius: 5px;
+  font-size: 0.8rem;
+  text-align: center;
+}
+.main__todo-tasks-container {
+  padding: 0.5rem;
+  grid-area: tasks;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  border-top: 1px solid var(--text-color);
+}
+.main__todo-task {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.main__todo-task-checkbox {
+  border: 1px solid var(--secondary-color);
+  width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: transparent;
+  cursor: pointer;
+  font-size: 0.8rem;
+}
+.main__todo-task-checkbox-checked {
+  background-color: var(--secondary-color);
+  color: var(--bg-color);
+}
+.main__todo-task-text {
+  margin: 0;
+  font-size: 0.9rem;
+}
+.main__todo-task-text-checked {
+  text-decoration: line-through;
+  text-decoration-color: var(--secondary-color);
+}
+.main__todo-task-delete {
+  font-size: 0.8rem;
+  cursor: pointer;
+  width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--text-color);
+  color: var(--bg-color);
+}
+.main__todo-task-delete-checked {
+  background-color: var(--secondary-color);
+}
+
+@media (min-width: 992px) {
+  .main-container {
+    grid-template-rows: 400px 1fr;
+    grid-template-areas: "c1 c1 c1 c1 c1 c1" "todo todo c2 c2 . .";
+    gap: 2rem;
+  }
+}
+.nav {
+  height: 100%;
+  width: 0;
+  grid-area: nav;
+  transition: width 0.25s cubic-bezier(0.67, 0.36, 0.65, 0.21);
+  background: var(--bg-gradient);
+}
+.nav--show {
+  width: 260px;
+}
+.nav-container {
+  padding: 0.5em 1em;
+}
+.nav__link-list {
+  margin: 0;
+  padding-left: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+.nav__link-item {
+  list-style: none;
+  text-transform: uppercase;
+  font-size: 0.8rem;
+  font-weight: 300;
+  opacity: 0;
+  font-size: 0;
+  pointer-events: none;
+  transition: opacity 0.1s ease-in, font-size 0.1s ease-in;
+  width: 100%;
+}
+.nav__link-item--show {
+  font-size: 0.8rem;
+  pointer-events: all;
+  opacity: 1;
+  transition: opacity 0.25s ease-in, font-size 0.25s ease-in;
+}
+.nav__link {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  margin: 0;
+  padding: 0.5rem 0.5rem;
+  color: var(--text-color);
+  text-decoration: none;
+  transition: color 0.25s cubic-bezier(0.67, 0.36, 0.65, 0.21);
+}
+.nav__link-text {
+  margin: 0;
+}
+.nav__link--page {
+  font-size: 1rem;
+  font-weight: 400;
+  border-bottom: 0.1px solid var(--text-color);
+  color: var(--text-color-highlight);
+}
+.nav__link-icon {
+  font-size: 1rem;
+}
+.nav__link-icon--inactive {
+  color: transparent;
+}
+.nav__link:hover {
+  color: var(--text-color-highlight);
+}
+
+@media (min-width: 992px) {
+  .nav {
+    width: 260px;
+    border-radius: 0.2rem;
+    padding: 0;
+  }
+  .nav__link-item {
+    font-size: 0.8rem;
+    pointer-events: all;
+    opacity: 1;
+  }
+  .nav__link-item--show {
+    font-size: 0.8rem;
+    pointer-events: all;
+    opacity: 1;
+  }
+}
+.dashboard {
+  padding-right: 1rem;
+  display: grid;
+  grid-template-columns: min-content 1fr;
+  grid-template-rows: 66px 1fr;
+  grid-template-areas: "nav header" "nav main";
+  min-height: 100%;
+  gap: 1rem;
+  position: relative;
+}
+
+@media (min-width: 992px) {
+  .dashboard {
+    grid-template-areas: "header header" "nav main";
+    gap: 1.5rem;
+    padding: 0 1.5em 0 1.5em;
+  }
+}
+.profile {
+  padding-right: 1rem;
+  display: grid;
+  grid-template-columns: min-content 1fr;
+  grid-template-rows: 66px 1fr;
+  grid-template-areas: "nav header" "nav main";
+  min-height: 100vh;
+  gap: 1rem;
+  position: relative;
+}
+
+@media (min-width: 992px) {
+  .profile {
+    grid-template-areas: "header header" "nav main";
+    gap: 1.5rem;
+    padding: 0 1.5em 0 1.5em;
+  }
+}
+:root {
+  --bg-color: #1e1e2e;
+  --primary-color: #27293d;
+  --secondary-color: #e14ecb;
+  --tertiary-color: #bd54f2;
+  --text-color: rgba(255, 255, 255, 0.787);
+  --text-color-highlight: #ffffff;
+  --font-family: "Poppins", sans-serif;
+  --bg-gradient: linear-gradient(
+      0deg,
+      var(--tertiary-color) 0%,
+      var(--secondary-color) 100%
+  );
+}
+
+.body {
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  margin: 0;
+  font-family: var(--font-family);
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/*# sourceMappingURL=styles.css.map */

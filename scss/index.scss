@@ -1,0 +1,30 @@
+@import 'todoChart';
+@import 'header';
+@import 'main';
+@import 'nav';
+@import 'dashboard';
+@import 'profile';
+:root {
+    --bg-color: #1e1e2e;
+    --primary-color: #27293d;
+    --secondary-color: #e14ecb;
+    --tertiary-color: #bd54f2;
+    --text-color: rgba(255, 255, 255, 0.787);
+    --text-color-highlight: #ffffff;
+
+    --font-family: "Poppins", sans-serif;
+    --bg-gradient: linear-gradient(
+        0deg,
+        var(--tertiary-color) 0%,
+        var(--secondary-color) 100%
+    );
+}
+
+.body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    margin: 0;
+    font-family: var(--font-family);
+    min-height: 100vh;
+    overflow-x: hidden;
+}

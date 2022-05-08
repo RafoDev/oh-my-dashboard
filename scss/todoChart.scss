@@ -1,0 +1,28 @@
+.main__todo-chart{
+    grid-area: c2;
+    background-color: var(--primary-color);
+    padding: 1em;
+    display: flex;
+    flex-flow: row wrap;
+    border-radius: 0.5rem;
+    &-header {
+        flex-grow: 1;
+    }
+    &-title {
+        margin: 0;
+        font-weight: 200;
+        font-size: 0.8rem;
+    }
+    &-resume {
+        margin: 0;
+        font-weight: 300;
+        font-size: 1.5rem;
+        color: var(--text-color-highlight);
+    }
+    &-container{
+        margin-top: 1rem;
+        // flex-grow: 1;
+        width: 100%;
+    }
+
+}

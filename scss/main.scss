@@ -1,0 +1,182 @@
+
+
+
+
+//
+.main {
+    grid-area: main;
+    &-container {
+        overflow: hidden;
+        display: grid;
+        grid-template-columns: repeat(6, 1fr);
+        grid-template-rows: 400px repeat(2, 1fr);
+        grid-template-areas:
+            "c1 c1 c1 c1 c1 c1"
+            "todo todo todo todo todo todo"
+            "c2 c2 c2 c2 c2 c2";
+        gap: 1rem;
+    }
+    &__chart {
+        overflow: hidden;
+        background-color: var(--primary-color);
+        padding: 1em;
+        display: flex;
+        flex-flow: row wrap;
+        border-radius: 0.5rem;
+        grid-area: c1;
+        &-header {
+            flex-grow: 1;
+        }
+        &-title {
+            margin: 0;
+            font-weight: 200;
+            font-size: 0.8rem;
+        }
+        &-resume {
+            margin: 0;
+            font-weight: 300;
+            font-size: 1.5rem;
+            color: var(--text-color-highlight);
+        }
+        &-options {
+            margin: 0;
+        }
+        &-option-list {
+            padding-left: 0;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            list-style: none;
+            border: 1px solid var(--secondary-color);
+            border-radius: 0.5em;
+            overflow: hidden;
+        }
+        &-option-item {
+            cursor: pointer;
+            border: 0.1em solid var(--secondary-color);
+            color: var(--text-color-highlight);
+            margin: 0;
+            font-weight: 400;
+            font-size: 0.9rem;
+            padding: 0.2em 0.5em;
+        }
+        &-option-item-selected {
+            background: var(--bg-gradient);
+        }
+        &-container {
+            margin-top: 1rem;
+            width: 100%;
+        }
+
+    }
+    &__todo {
+        box-sizing: border-box;
+        border-radius: 0.5rem;
+        background-color: var(--primary-color);
+        grid-area: todo;
+        display: grid;
+        justify-content: center;
+        // justify-items: center;
+        align-items: center;
+        grid-template-columns: 65% 35%;
+        grid-template-rows: repeat(3, min-content);
+        grid-template-areas:
+            "title title"
+            "input button"
+            "tasks tasks";
+        gap: 0.5rem;
+        padding: 1em;
+        &-title {
+            grid-area: title;
+            margin: 0;
+            font-weight: 300;
+            font-size: 1.5rem;
+            color: var(--text-color-highlight);
+        }
+        &-input {
+            grid-area: input;
+            background-color: transparent;
+            border: none;
+            color: var(--text-color-highlight);
+            padding: 0.5em 0.5em;
+            transition: all 0.25s ease-in-out;
+            &:focus {
+                outline: 1px solid var(--text-color);
+            }
+        }
+        &-button {
+            grid-area: button;
+            background: var(--bg-gradient);
+            text-decoration: none;
+            color: var(--text-color);
+            padding: 0.2em 0.5em;
+            border-radius: 5px;
+            font-size: 0.8rem;
+            text-align: center;
+        }
+        &-tasks-container {
+            padding: .5rem;
+            grid-area: tasks;
+            display: flex;
+            flex-direction: column;
+            gap:.5rem;
+            border-top: 1px solid var(--text-color);
+        }
+        &-task {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            &-checkbox {
+                border: 1px solid var(--secondary-color);
+                width: 20px;
+                height: 20px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                color:transparent;
+                cursor: pointer;
+                font-size: .8rem;
+                &-checked{
+                    background-color:var(--secondary-color);
+                    color: var(--bg-color);
+                }
+            }
+            &-text {
+                margin: 0;
+                font-size: .9rem;
+                &-checked{
+                    text-decoration: line-through;
+                    text-decoration-color: var(--secondary-color);
+                }
+            }
+            &-delete {
+                font-size: .8rem;
+                cursor: pointer;
+                width: 20px;
+                height: 20px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                background-color: var(--text-color);
+                color: var(--bg-color);
+                &-checked{
+                    background-color:var(--secondary-color);
+                }
+            }
+        }
+    }
+}
+
+@media (min-width: 992px) {
+    .main {
+        &-container {
+            // grid-template-columns: repeat(6, 1fr);
+            grid-template-rows: 400px 1fr;
+            grid-template-areas:
+                "c1 c1 c1 c1 c1 c1"
+                "todo todo c2 c2 . .";
+            gap: 2rem;
+        }
+    }
+}
