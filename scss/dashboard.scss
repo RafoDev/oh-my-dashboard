@@ -1,0 +1,22 @@
+.dashboard{
+    padding-right: 1rem;
+    display: grid;
+    grid-template-columns: min-content 1fr;
+    grid-template-rows: 66px 1fr;
+    grid-template-areas:
+        "nav header"
+        "nav main";
+    min-height: 100%;
+    gap: 1rem;
+    position: relative;
+}
+
+@media (min-width: 992px) {
+    .dashboard {
+        grid-template-areas:
+            "header header"
+            "nav main";
+        gap: 1.5rem;
+        padding: 0 1.5em 0 1.5em;
+    }
+}
