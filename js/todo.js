@@ -1,3 +1,4 @@
+import Task from "./Task.js";
 import renderChart from "./todoChart.js";
 
 let tasksStats = { nTasks: 0, completed: 0 };
@@ -8,34 +9,33 @@ const todo = () => {
     const input = document.querySelector(".main__todo-input");
     const container = document.querySelector(".main__todo-tasks-container");
     const text = document.querySelector(".main__todo-task-text");
-    
+
     let tasks = [];
     let checkboxes = [];
     let removers = [];
     let texts = [];
-    let idx = 0;
 
     const findTaskIndex = (i) => {
-        return tasks.findIndex(t => t.id === i);
-    }
+        return tasks.findIndex((t) => t.id === i);
+    };
 
     const printTasks = (...arrTasks) => {
         container.innerHTML = "";
         arrTasks.forEach((t) => {
-            const [id,task,completed] = Object.values(t);
-            const checked = completed? ['main__todo-task-checkbox-checked','main__todo-task-text-checked','main__todo-task-delete-checked'] : ['','',''];
+            const { id, task, completed } = t;
+            const checked = completed
+                ? [
+                      "main__todo-task-checkbox-checked",
+                      "main__todo-task-text-checked",
+                      "main__todo-task-delete-checked",
+                  ]
+                : ["", "", ""];
 
-            container.innerHTML += `<div class="main__todo-task" data-index = ${
-                id
-            }>
-                <div class="main__todo-task-checkbox ${checked[0]}"  data-index = ${
-                id
-            }>
+            container.innerHTML += `<div class="main__todo-task" data-index = ${id}>
+                <div class="main__todo-task-checkbox ${checked[0]}"  data-index = ${id}>
                 <i class="fa-solid fa-check"></i>
                 </div>
-                <p class="main__todo-task-text ${checked[1]}" data-index = ${id}>${
-                task
-            }</p>
+                <p class="main__todo-task-text ${checked[1]}" data-index = ${id}>${task}</p>
                 <div class="main__todo-task-delete ${checked[2]}" data-index = ${id} >
                 <i class="fa-solid fa-xmark"></i>
                 </div>
@@ -44,12 +44,9 @@ const todo = () => {
     };
 
     const updateTaskCheck = (i) => {
-        tasks[i] = {
-            ...tasks[i],
-            completed: !tasks[i].completed
-        }
+        tasks[i].completed = tasks[i].completed ? false : true;
     };
-    
+
     function checkElement() {
         let i = this.getAttribute("data-index");
         i = findTaskIndex(+i);
@@ -72,13 +69,27 @@ const todo = () => {
     };
 
     function deleteElement() {
-        let i = parseInt(this.getAttribute("data-index"));
-        updateCompletedTasks(i);
-        tasks = tasks.filter((t) => t.id !== i);
-        printTasks(...tasks);
-        updateListeners();
-        renderChart(tasksStats);
+        Swal.fire({
+            title: "¿Estás seguro?",
+            text: "Si la tarea no fué completada se mostrará en el gráfico",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Borrar",
+        }).then((result) => {
+            if (result.isConfirmed) {
+                Swal.fire("Borrada!", "La tarea fué eliminada", "success");
+                let i = parseInt(this.getAttribute("data-index"));
+                updateCompletedTasks(i);
+                tasks = tasks.filter((t) => t.id !== i);
+                printTasks(...tasks);
+                updateListeners();
+                renderChart(tasksStats);
+            }
+        });
     }
+
     const clearInput = () => {
         input.value = "";
     };
@@ -86,19 +97,29 @@ const todo = () => {
     const addTask = (e) => {
         e.preventDefault();
         const value = input.value;
-        tasks.push({ id: idx, task: value, completed: false });
-        idx++;
-        tasksStats.nTasks = idx;
-        printTasks(...tasks);
-        updateListeners();
-        clearInput();
-        renderChart(tasksStats);
+        if(value===''){
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: '¡No puedes agregar una tarea vacía!',
+              })
+        }else{
+            tasks = [...tasks, new Task(value)];
+            tasksStats.nTasks++;
+            printTasks(...tasks);
+            updateListeners();
+            clearInput();
+            renderChart(tasksStats);
+            Swal.fire({
+                position: 'center-center',
+                icon: 'success',
+                title: 'Se ha creado una nueva tarea',
+                showConfirmButton: false,
+                timer: 1000
+              })
+        }
     };
-
     addButton.addEventListener("click", addTask);
 };
 
-
-
-
-export {todo, tasksStats};
+export { todo, tasksStats };
