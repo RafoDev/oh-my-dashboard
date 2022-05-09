@@ -353,12 +353,98 @@
     padding: 0 1.5em 0 1.5em;
   }
 }
+.main-form-container {
+  display: grid;
+  overflow: hidden;
+  grid-template-columns: repeat(6, 1fr);
+  grid-template-rows: 614px;
+  grid-template-areas: "user user user user card card ";
+  gap: 1rem;
+}
+.main-form__user {
+  background-color: var(--primary-color);
+  padding: 1em;
+  border-radius: 0.5rem;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr 1fr;
+  display: grid;
+  gap: 1rem;
+  grid-area: user;
+  text-align: center;
+}
+.main-form__group {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+.main-form__group-label {
+  font-size: 18px;
+  font-weight: bold;
+  color: #a1a1a1;
+}
+.main-form__group-input {
+  padding: 0;
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+  box-shadow: 0.2rem 0.5rem 1rem aqua;
+}
+.main-form__button {
+  padding: 0;
+  width: 100%;
+  border-radius: 0.5rem;
+}
+.main-form__button-container {
+  display: flex;
+  justify-content: center;
+}
+.main-form__card {
+  box-sizing: border-box;
+  border-radius: 0.5rem;
+  background-color: var(--primary-color);
+  grid-area: card;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  gap: 1.5rem;
+  padding: 0.5rem;
+  color: var(--text-color);
+}
+.main-form__card-img {
+  width: 100%;
+  border-radius: 50%;
+}
+.main-form__card-img-container {
+  margin: 0;
+  max-width: 256px;
+}
+.main-form__card-title {
+  margin: 0;
+}
+.main-form__card-subtitle {
+  margin: 0;
+}
+.main-form__card-text {
+  margin: 0;
+}
+.main-form__card-social-media {
+  display: flex;
+  gap: 2rem;
+}
+.main-form__card-social-media-link {
+  font-size: 2.2rem;
+  text-decoration: none;
+  color: white;
+}
+
 :root {
   --bg-color: #1e1e2e;
   --primary-color: #27293d;
   --secondary-color: #e14ecb;
   --tertiary-color: #bd54f2;
-  --text-color: rgba(255, 255, 255, 0.787);
+  --text-color: rgba(255, 255, 255, 0.788);
   --text-color-highlight: #ffffff;
   --font-family: "Poppins", sans-serif;
   --bg-gradient: linear-gradient(
