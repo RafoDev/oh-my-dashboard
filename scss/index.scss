@@ -4,12 +4,13 @@
 @import 'nav';
 @import 'dashboard';
 @import 'profile';
+@import 'form';
 :root {
     --bg-color: #1e1e2e;
     --primary-color: #27293d;
     --secondary-color: #e14ecb;
     --tertiary-color: #bd54f2;
-    --text-color: rgba(255, 255, 255, 0.787);
+    --text-color: rgba(255, 255, 255, 0.788);
     --text-color-highlight: #ffffff;
 
     --font-family: "Poppins", sans-serif;
