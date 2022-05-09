@@ -3,9 +3,6 @@ import renderChart from "./todoChart.js";
 let tasksStats = { nTasks: 0, completed: 0 };
 renderChart(tasksStats);
 const todo = () => {
-    //     main__todo-button
-    // main__todo-task-checkbox
-    // main__todo-task-delete
     const addButton = document.querySelector(".main__todo-button");
     const deleteButton = document.querySelector(".main__todo-task-delete");
     const input = document.querySelector(".main__todo-input");
@@ -22,9 +19,9 @@ const todo = () => {
         return tasks.findIndex(t => t.id === i);
     }
 
-    const printTasks = () => {
+    const printTasks = (...arrTasks) => {
         container.innerHTML = "";
-        tasks.forEach((t) => {
+        arrTasks.forEach((t) => {
             const [id,task,completed] = Object.values(t);
             const checked = completed? ['main__todo-task-checkbox-checked','main__todo-task-text-checked','main__todo-task-delete-checked'] : ['','',''];
 
@@ -44,18 +41,18 @@ const todo = () => {
                 </div>
                 </div>`;
         });
-        console.log(tasksStats);
-        console.log(tasks);
     };
 
     const updateTaskCheck = (i) => {
-        tasks[i].completed = tasks[i].completed ? false : true;
+        tasks[i] = {
+            ...tasks[i],
+            completed: !tasks[i].completed
+        }
     };
     
     function checkElement() {
         let i = this.getAttribute("data-index");
         i = findTaskIndex(+i);
-        // console.log(i);
         checkboxes[i].classList.toggle("main__todo-task-checkbox-checked");
         removers[i].classList.toggle("main__todo-task-delete-checked");
         texts[i].classList.toggle("main__todo-task-text-checked");
@@ -76,10 +73,9 @@ const todo = () => {
 
     function deleteElement() {
         let i = parseInt(this.getAttribute("data-index"));
-        console.log(i); 
         updateCompletedTasks(i);
         tasks = tasks.filter((t) => t.id !== i);
-        printTasks();
+        printTasks(...tasks);
         updateListeners();
         renderChart(tasksStats);
     }
@@ -93,7 +89,7 @@ const todo = () => {
         tasks.push({ id: idx, task: value, completed: false });
         idx++;
         tasksStats.nTasks = idx;
-        printTasks();
+        printTasks(...tasks);
         updateListeners();
         clearInput();
         renderChart(tasksStats);
