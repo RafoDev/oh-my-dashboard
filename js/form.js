@@ -29,7 +29,10 @@ const validacion = () => {
       const flgNombres=expNom.test(nombres.value);
       const flgApellidos=expNom.test(apellidos.value);
       const flgDireccion=expDireccion.test(direccion.value);
-      
+      const flgCiudad=expNom.test(ciudad.value);
+      const flgCodigo=expUsuario.test(codigo.value);
+  
+
 
 
 
